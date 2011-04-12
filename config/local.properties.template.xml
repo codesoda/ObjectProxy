@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<properties>
+
+	<property name="debug" value="true" />
+	<property name="Assembly.Version" value="0.0.0" />
+
+	<property name="svnToolsFolder" value="..\tools\svn" />
+	<property name="svn.exe" value="${svnToolsFolder}\svn.exe" />
+
+</properties>

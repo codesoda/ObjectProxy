@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<project name="CodeSoda.ObjectProxy" default="all">
+
+	<include buildfile="utility.build" />
+
+	<if test="${file::exists('config\local.properties.xml')}">
+		<echo message="Loading local.properties.xml" />
+		<include buildfile="config\local.properties.xml" />
+	</if>
+
+	<target name="compile.library" depends="init, versioninfo" description="builds the dll">
+		<csc target="library" output="build\${project::get-name()}.dll" debug="${debug}" >
+			<sources>
+				<include name="src\app\CodeSoda.ObjectProxy\**\*.cs" />
+				<!-- include name="src\SolutionInfo.cs" / -->
+				<include name="build\SolutionVersionInfo.cs" />
+			</sources>
+			<references>
+				<include name="lib\Castle.Core.dll" />
+				<include name="lib\Castle.DynamicProxy2.dll" />
+			</references>
+		</csc>
+	</target>
+
+	<!-- target name="compile.tests" depends="init, compile.library" description="builds the test library">
+		<csc target="library" output="build\${project::get-name()}.Test.dll" debug="true" >
+			<sources>
+				<include name="src\test\CodeSoda.Web.Mvc.Tests\**\*.cs" />
+			</sources>
+			<references>
+				<include name="build\${project::get-name()}.dll" />
+				<include name="lib\moq.dll" />
+				<include name="lib\nunit.framework.dll" />
+				<include name="lib\System.Web.Abstractions.dll" />
+				<include name="lib\System.Web.Routing.dll" />
+				<include name="lib\System.Web.Mvc.dll" />
+			</references>
+		</csc>
+	</target -->
+
+	<!-- target name="run.tests" depends="compile.tests">
+		<property name="project.name" value="${project::get-name()}" overwrite="false" />
+		<echo message="Unit Testing ${project.name}" />
+		<copy file="lib\nunit.framework.dll" todir="build" overwrite="false" />
+		<copy file="lib\moq.dll" todir="build" overwrite="false" />
+		<exec program="..\tools\nunit\nunit-console.exe" workingdir="build">
+			<arg path="build\${project::get-name()}.Test.dll" />
+		</exec>
+	</target -->
+
+</project>
